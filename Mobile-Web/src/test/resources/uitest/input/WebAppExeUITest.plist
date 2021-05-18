@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist
+PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+       "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Title</key>
+		<string>WebAppExeUITest</string>
+		<key>Tabs</key>
+		<array>	
+			<dict>
+				<key>deffile</key>
+				<dict>
+					<key>srcLocation</key>
+					<string>remoteFile</string>
+					<key>fileext</key>
+					<string>plist</string>
+					<key>filename</key>
+					<string>page_1424</string>
+					<key>url</key>
+					<string>http://210.189.125.252/adf/WebAppExeUITest/</string>
+				</dict>
+			</dict>	
+			
+		</array>
+	</dict>
+</plist>

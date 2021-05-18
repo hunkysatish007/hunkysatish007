@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="renderer" class="com.mobilous.mobileweb.util.HtmlApplicationRenderer">
+	</bean>
+
+<!-- 	
+	THERE IS NO NEED TO SET THIS. JUST MAKE A WAR FILE AND UPLOAD
+	SAME FILE TO MULTIPLE SERVERS PROVIDING THE APPEXE AND MOBILEWEB IS
+	IN THE SAME SERVER
+	
+	<bean id="BaseUrl" class="java.lang.String">
+		<constructor-arg value="http://210.189.125.252/appexe/"/>
+	</bean>	 -->
+</beans>

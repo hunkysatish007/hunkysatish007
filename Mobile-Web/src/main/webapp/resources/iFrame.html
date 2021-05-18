@@ -1,0 +1,82 @@
+
+<html>
+<head>
+<title></title>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!--  <style type="text/css">
+  body {
+	background-image:url('images/system/pre_iphone-old.png');
+	background-repeat: no-repeat
+    }
+  </style> -->
+<script>
+//$('#iview').attr({"width":"335px","height":"480px","src":"file:///Users/mato/Development/mobile-web-mato/output/mobileweb/index.html#page_1?orientation=180"})
+//$('#iview').attr({"width":"495px","height":"320px","src":"file:///Users/mato/Development/mobile-web-mato/output/mobileweb/index.html#page_1?orientation=90"})
+    function initialize(){
+		$("#lbl_landscape").css({'position':'absolute','top':'0px','left':'380px'});
+		$("#lbl_portrait").css({'position':'absolute','top':'20px','left':'380px'});
+		//var iframe = document.getElementById('iview').contentWindow;
+		//var iframe = document.getElementById('iview');
+		//console.log(iframe);
+    };
+    
+    
+
+    
+    function getQueryParameter ( parameterName ) {
+  		var queryString = window.top.location.search.substring(1);
+ 	 	var parameterName = parameterName + "=";
+  		if ( queryString.length > 0 ) {
+    	begin = queryString.indexOf ( parameterName );
+    	if ( begin != -1 ) {
+      		begin += parameterName.length;
+      		end = queryString.indexOf ( "&" , begin );
+        if ( end == -1 ) {
+        end = queryString.length
+      }
+      return unescape(queryString.substring ( begin, end ));
+    }
+  }
+  return "null";
+} 
+    
+    //rotateObject('#iview',-90,200,200)
+    function rotateObject($object,$degree,$centerX,$centerY){
+    	$($object).css({
+    		'filter':'progid:DXImageTransform.Microsoft.BasicImage(rotation='+$degree/100+')',
+    		'-ms-filter':'progid:DXImageTransform.Microsoft.BasicImage(rotation='+$degree/100+')',
+    		'-moz-transform':'rotate('+$degree+'deg)',
+    		'-o-transform':'rotate('+$degree+'deg)',
+    		'-webkit-transform':'rotate('+$degree+'deg)',
+    		'-webkit-transform-origin':$centerX+' '+$centerY
+    	});
+    };
+    
+    function rotateDevice(param){
+    	switch(param){
+    		case 'landscape-right':
+    			rotateObject('#img_phone',-90,250,250);
+    			$('#iview').css({"width":"480px","height":"300px","top":"164px","left":"120px"});
+    			$('#img_header').css({"top":"144px","left":"120px","width":"480px","height":"20px"});
+    			$('#img_header').attr('src',"images/system/header-lands.png");
+    		break;
+    		case 'portrait-up':
+    			rotateObject('#img_phone',0,250,250);
+    			$('#iview').css({"width":"320px","height":"460px","top":"140px","left":"36px"});
+    			$('#img_header').css({"top":"120px","left":"36px","width":"321px"});
+    			$('#img_header').attr('src',"images/system/header.png");
+    		break;
+    	}
+    	$('#iview').attr({"src":"listtest.html?iframe=true&orientation="+param})
+    };
+</script>
+  
+</head>
+<body onload="initialize()">
+	<label id="lbl_landscape" onclick="rotateDevice('landscape-right')">landscape</label>
+	<label id="lbl_portrait" onclick="rotateDevice('portrait-up')">portrait</label>
+	<img id="img_phone" src="images/system/pre_iphone-old.png" style="position:absolute; top:0px; left:0px;">
+	<img id="img_header" src="images/system/header.png" style="position:absolute; top:120px; left:36px;width:321px">
+	<iframe id="iview" name="mato" src="listtest.html#page_1?iframe=true&orientation=portrait-up" seamless="seamless" scrolling="no" style="position:absolute; top:140px; left:36px; width:320px; height:460px;overflow:hidden"></iframe>
+</body>
+</html>

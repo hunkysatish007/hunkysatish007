@@ -1,0 +1,68 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - refs/heads/master
+      - refs/heads/r
+      - refs/heads/developement
+  paths:
+   include:
+     - services/*
+
+pool:
+  #vmImage: 'ubuntu-latest'
+  name: 'Android-Pool'
+
+variables:
+    fullCI: $[ startsWith(variables['build.sourceBranch'], 'refs/heads/master') ]
+    serviceName: 'mobile-web'
+    artifactsPath: 'target'
+    publishDir: 'mobile-web'
+    pomPath: 'pom.xml'
+    settingConfigPath: 'settings.xml'
+    mvngoal: 'clean install -Dmaven.test.skip=true'
+  
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: Maven@3
+  displayName: Maven Test and Package on the basis of Pull Request and commit base ci job
+  #condition: eq(variables['fullCI'],True)
+  enabled: true
+  inputs:
+    mavenPomFile: '$(system.defaultWorkingDirectory)/$(pomPath)'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    #jdkVersionOption: '1.8'
+    #jdkArchitectureOption: 'x64'
+    testResultsFiles: '**/TEST-*.xml'
+    goals: '$(mvngoal)'
+    publishJUnitResults: true
+
+- task: CopyFiles@2
+  #condition: and(always(), eq(variables['Build.Reason'], 'PullRequest'))
+  #condition: eq(variables['fullCI'],True)
+  displayName: 'Copy jar Files to: artifactStagingDirectory'
+  enabled: true
+  inputs:
+    SourceFolder: $(system.defaultWorkingDirectory)/$(artifactsPath)
+    Contents: |
+     **/*.war
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/$(publishDir)'
+
+- task: PublishBuildArtifacts@1
+  #condition: or(and(always(), eq(variables['Build.Reason'], 'PullRequest')),eq(variables['fullCI'],True))
+  #condition: eq(variables['fullCI'],True)
+  displayName: 'Publish Artifact: drop'
+  enabled: true
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(Build.BuildNumber)'
+    enabled: false
+    condition: succeededOrFailed()
+

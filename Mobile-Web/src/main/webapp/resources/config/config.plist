@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>project_path</key>
+	<string>/var/www/html/appexe/[userID]/[projectID]/</string>
+	<key>output_dir</key>
+	<string>/var/www/html/appexe/[userID]/[projectID]/bin/mobileweb2/</string>
+	<key>resources_dir</key>
+	<string>applications/mobileweb/resources/</string>
+	<key>templates_dir</key>
+	<string>applications/mobileweb/resources/templates/</string>
+	<key>preview_path</key>
+	<string>/var/www/html/mobileweb/[userID]/</string>
+</dict>
+</plist>

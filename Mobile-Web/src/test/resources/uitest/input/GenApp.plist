@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE plist
+PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+       "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+	
+<dict>
+		
+<key>starturl</key>
+		
+<string></string>
+		
+<key>apptitle</key>
+		
+<string>WebAppExeUItest</string>
+		
+<key>icontitle</key>
+		
+<string></string>
+		
+<key>DBlog</key>
+		
+<false/>
+		
+<key>mainfile</key>
+		
+<string>WebAppExeUItest</string>
+	
+</dict>
+</plist>
